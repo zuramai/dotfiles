@@ -1,0 +1,35 @@
+- hosts: localhost
+  become: true
+  remote_user: zuramai
+  tasks:
+
+  - name: Check if zsh installed
+    shell: pacman -Q zsh
+    register: zsh_check
+
+  - name: Install zsh
+    when: zsh_check.stdout.find('was not found') != -1
+    pacman:
+      name: zsh
+      state: present
+
+  - name: Change shell
+    shell: chsh -s /bin/zsh
+
+  - name: Install ohmyzsh
+    shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+  - name: Install the zsh plugin autosuggestions
+    ansible.builtin.git: 
+      repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+      dest: "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+
+  - name: Install the zsh plugin syntax highlighting
+    ansible.builtin.git:                                              
+      repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
+      dest: "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+
+  - name: Install the zsh plugin completions
+    ansible.builtin.git:                                              
+      repo: 'https://github.com/zsh-users/zsh-completions.git'
+      dest: "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions"
