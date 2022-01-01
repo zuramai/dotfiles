@@ -67,3 +67,8 @@ ansible-playbook zsh/setup.yml
 # Install Golang
 msg_done 'Installing Golang'
 sh ./go/install.sh
+
+# Install PostgreSQL
+msg_done 'Installing Postgresql'
+pacman -S postgresql pgadmin4
+initdb -D /var/lib/postgres/data
