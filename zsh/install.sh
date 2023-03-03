@@ -1,7 +1,3 @@
-# Install zsh
-echo "Installing zsh.."
-pacman -S zsh
-
 # Set default shell to zsh
 echo "Setting default shell to zsh.."
 chsh -s /bin/zsh

@@ -9,8 +9,6 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -19,9 +17,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
 # Path
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH="$PATH:$GEM_HOME/bin"
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -86,6 +81,7 @@ plugins=(git
 	zsh-autosuggestions
 	zsh-syntax-highlighting)
 
+export ZSH=/home/zuramai/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -126,4 +122,9 @@ alias vim="nvim"
 # pnpm
 export PNPM_HOME="/home/zuramai/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+export NVM_DIR="$HOME/.nvm"
 # pnpm end
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
